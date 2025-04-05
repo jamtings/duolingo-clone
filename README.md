@@ -21,7 +21,7 @@ Vue.js로 제작된 Duolingo 스타일의 언어 학습 애플리케이션입니
 
 1. 저장소 클론:
 ```bash
-git clone [저장소 URL]
+git clone https://github.com/jamtings/duolingo-clone.git
 ```
 
 2. 종속성 설치:
