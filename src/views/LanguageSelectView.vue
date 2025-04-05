@@ -23,7 +23,7 @@
         >
           <v-card-item>
             <div class="language-flag mb-4">
-              {{ language.flag }}
+              <span :class="['fi', `fi-${language.countryCode}`]"></span>
             </div>
             <v-card-title class="text-h5 mb-2">
               {{ language.name }}
@@ -51,6 +51,8 @@
 </template>
 
 <script>
+import 'flag-icons/css/flag-icons.min.css'
+
 export default {
   name: 'LanguageSelectView',
   data() {
@@ -59,15 +61,23 @@ export default {
         {
           code: 'en',
           name: '영어',
-          flag: '🇺🇸',
+          countryCode: 'us',
           learners: 387,
           difficulty: '쉬움',
           estimatedTime: '2-3개월'
         },
         {
+          code: 'vi',
+          name: '베트남어',
+          countryCode: 'vn',
+          learners: 167,
+          difficulty: '보통',
+          estimatedTime: '3-4개월'
+        },
+        {
           code: 'ja',
           name: '일본어',
-          flag: '🇯🇵',
+          countryCode: 'jp',
           learners: 256,
           difficulty: '보통',
           estimatedTime: '3-4개월'
@@ -75,7 +85,7 @@ export default {
         {
           code: 'zh',
           name: '중국어',
-          flag: '🇨🇳',
+          countryCode: 'cn',
           learners: 189,
           difficulty: '어려움',
           estimatedTime: '4-5개월'
@@ -83,7 +93,7 @@ export default {
         {
           code: 'es',
           name: '스페인어',
-          flag: '🇪🇸',
+          countryCode: 'es',
           learners: 234,
           difficulty: '쉬움',
           estimatedTime: '2-3개월'
@@ -91,7 +101,7 @@ export default {
         {
           code: 'fr',
           name: '프랑스어',
-          flag: '🇫🇷',
+          countryCode: 'fr',
           learners: 178,
           difficulty: '보통',
           estimatedTime: '3-4개월'
@@ -99,7 +109,7 @@ export default {
         {
           code: 'de',
           name: '독일어',
-          flag: '🇩🇪',
+          countryCode: 'de',
           learners: 156,
           difficulty: '보통',
           estimatedTime: '3-4개월'
@@ -144,5 +154,11 @@ export default {
 .language-flag {
   font-size: 3rem;
   text-align: center;
+}
+
+.language-flag .fi {
+  font-size: 3rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 </style> 

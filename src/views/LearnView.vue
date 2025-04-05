@@ -38,7 +38,14 @@
         <div class="main-content">
           <!-- 상단 헤더 -->
           <v-app-bar flat class="px-4">
-            <v-btn icon="mdi-arrow-left" variant="text" to="/languages"></v-btn>
+            <v-btn
+              icon
+              variant="text"
+              to="/languages"
+              class="flag-button"
+            >
+              <span :class="['fi', `fi-${selectedCountryCode}`]"></span>
+            </v-btn>
             <v-toolbar-title class="ml-2">{{ selectedLanguage }} 학습하기</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-btn prepend-icon="mdi-book" variant="text">학습 가이드</v-btn>
@@ -133,11 +140,21 @@
 </template>
 
 <script>
+import 'flag-icons/css/flag-icons.min.css'
+
 export default {
   name: 'LearnView',
   data() {
     return {
-      selectedLanguage: '영어',
+      languages: {
+        en: { name: '영어', code: 'us' },
+        vi: { name: '베트남어', code: 'vn' },
+        ja: { name: '일본어', code: 'jp' },
+        zh: { name: '중국어', code: 'cn' },
+        es: { name: '스페인어', code: 'es' },
+        fr: { name: '프랑스어', code: 'fr' },
+        de: { name: '독일어', code: 'de' }
+      },
       learningUnits: [
         {
           id: 1,
@@ -202,6 +219,16 @@ export default {
           ]
         }
       ]
+    }
+  },
+  computed: {
+    selectedLanguage() {
+      const langCode = this.$route.params.lang || 'en'
+      return this.languages[langCode]?.name || '영어'
+    },
+    selectedCountryCode() {
+      const langCode = this.$route.params.lang || 'en'
+      return this.languages[langCode]?.code || 'us'
     }
   },
   methods: {
@@ -269,5 +296,22 @@ export default {
 
 .right-sidebar {
   background-color: #fff;
+}
+
+.flag-button {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5;
+}
+
+.flag-button .fi {
+  font-size: 1.2em;
+  border-radius: 2px;
 }
 </style> 
